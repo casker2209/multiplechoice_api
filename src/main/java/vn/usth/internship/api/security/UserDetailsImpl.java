@@ -62,7 +62,9 @@ public class UserDetailsImpl implements UserDetails {
     public void setId(String id) {
         this.id = id;
     }
-
+    public User getUser(){
+        return new User(getId(),getUsername(),getEmail(),getPassword());
+    }
     @Override
     public String getPassword() {
         return password;

@@ -15,8 +15,14 @@ public class ExamController {
     private ExamRepository examRepository;
 
     @GetMapping(value="/")
-    public List<Exam> getAllExam(){
-        return examRepository.findAll();
+    public List<ExamMini> getAllExam(){
+
+        List<Exam> examList = examRepository.findAll();
+        List<ExamMini> examMiniList = new ArrayList<>();
+        for(Exam exam: examList){
+            examMiniList.add(new ExamMini(exam.getId(),exam.getName(),exam.getDescription()));
+        }
+        return examMiniList;
     }
 
     @PreAuthorize("hasRole")
@@ -38,6 +44,10 @@ public class ExamController {
             List.add(exam.getName());
         }
         return List;
+    }
+    @GetMapping(value="/{id}")
+    public Exam findExambyId(@PathVariable String id){
+        return examRepository.findById(id).get();
     }
 
 }

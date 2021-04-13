@@ -15,7 +15,7 @@ public class UserInfo {
     private String id;
     @DBRef
     @Field("User")
-    private User User;
+    private User user;
     private List<ExamHistory> ExamHistory;
 
     public void setId(String id) {
@@ -27,7 +27,7 @@ public class UserInfo {
     }
 
     public void setUser(vn.usth.internship.api.security.User user) {
-        User = user;
+        user = user;
     }
 
     public String getId() {
@@ -39,13 +39,13 @@ public class UserInfo {
     }
 
     public vn.usth.internship.api.security.User getUser() {
-        return User;
+        return user;
     }
     public UserInfo(){
 
     }
     public UserInfo(User user,List<ExamHistory> ExamHistory){
-        this.User = user;
+        this.user = user;
         this.ExamHistory = ExamHistory;
     }
 }

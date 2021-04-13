@@ -14,4 +14,5 @@ public interface ExamRepository extends MongoRepository<Exam, String> {
     Optional<Exam> findByName(String name);
 
     List<Exam> findByNameContaining(String name);
+
 }
