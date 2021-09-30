@@ -10,12 +10,8 @@ import java.util.Map;
 public class Question implements Serializable {
 
     private String question;
-    private String QuestionCorrect;
-    private String A;
-    private String B;
-    private String C;
-    private String D;
-
+    private List<String> QuestionCorrect;
+    private List<String> answer;
 
 
 
@@ -23,7 +19,7 @@ public class Question implements Serializable {
         return question;
     }
 
-    public String getQuestionCorrect() {
+    public List<String> getQuestionCorrect() {
         return QuestionCorrect;
     }
 
@@ -31,47 +27,22 @@ public class Question implements Serializable {
         question = question;
     }
 
-    public void setQuestionCorrect(String questionCorrect) {
+    public void setQuestionCorrect(List<String> questionCorrect) {
         QuestionCorrect = questionCorrect;
     }
 
-
-    public void setA(String a) {
-        A = a;
+    public List<String> getAnswer() {
+        return answer;
     }
 
-    public void setB(String b) {
-        B = b;
+    public void setAnswer(List<String> answer) {
+        this.answer = answer;
     }
 
-    public void setC(String c) {
-        C = c;
-    }
-
-    public void setD(String d) {
-        D = d;
-    }
-
-    public String getA() {
-        return A;
-    }
-
-    public String getB() {
-        return B;
-    }
-
-    public String getC() {
-        return C;
-    }
-
-    public String getD() {
-        return D;
-    }
-
-    public Question(String A,String B,String C,String D,String question, String QuestionCorrect){
+    public Question(String question, List<String> QuestionCorrect,List<String> answer){
         this.question = question;
         this.QuestionCorrect = QuestionCorrect;
-        this.A = A;this.B = B;this.C = C; this.D = D;
+        this.answer = answer;
 
     }
 }

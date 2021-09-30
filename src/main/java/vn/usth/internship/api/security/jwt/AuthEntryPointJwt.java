@@ -18,8 +18,8 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-        logger.error("Unauthorized error: {}", e.getMessage());
-        httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Error: Unauthorized");
+        logger.error("Lỗi không có quyền truy cập: {}", e.getMessage());
+        httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Lỗi: Bạn không có quyền truy cập");
 
     }
 }

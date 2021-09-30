@@ -1,6 +1,6 @@
 package vn.usth.internship.api.object;
 
-public class ExamMini {
+public class ExamInfo {
     String id;
     String name;
     String description;
@@ -28,7 +28,7 @@ public class ExamMini {
         this.description = description;
     }
 
-    public ExamMini(String id, String name,String description){
+    public ExamInfo(String id, String name, String description){
         this.id = id;
         this.name = name;
         this.description = description;

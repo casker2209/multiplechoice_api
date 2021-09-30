@@ -62,24 +62,25 @@ public class AuthController {
                 userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
-                roles));
+                roles,
+                userDetails.getName()));
     }
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Validated @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Error: Username is already taken!"));
+                    .body(new MessageResponse("Tên đăng nhập này đã có người sử dụng"));
         }
 
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Error: Email is already in use!"));
+                    .body(new MessageResponse("Email này đã có người sử dụng"));
         }
         User user = new User(signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()));
+                encoder.encode(signUpRequest.getPassword()), signUpRequest.getName());
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
         if (strRoles == null) {
@@ -113,6 +114,6 @@ public class AuthController {
         userRepository.save(user);
         UserInfo userInfo = new UserInfo(user,new ArrayList<ExamHistory>());
         userInfoRepository.save(userInfo);
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        return ResponseEntity.ok(new MessageResponse("Đăng ký thành công!"));
     }
 }

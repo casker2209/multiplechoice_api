@@ -1,0 +1,31 @@
+/*public void colorAnswer(View view,int type){
+        TextView A,B,C,D,Name;
+        
+        
+        List<TextView> AnswerList = new ArrayList<>();
+        AnswerList.add(A);
+        AnswerList.add(B);
+        AnswerList.add(C);
+        AnswerList.add(D);
+
+        LinearLayout LineA = view.findViewById(R.id.LineA);
+        LinearLayout LineB = view.findViewById(R.id.LineB);
+        LinearLayout LineC = view.findViewById(R.id.LineC);
+        LinearLayout LineD = view.findViewById(R.id.LineD);
+        List<LinearLayout> LineList = new ArrayList<>();
+        LineList.add(LineA);
+        LineList.add(LineB);
+        LineList.add(LineC);
+        LineList.add(LineD);
+        
+        
+        Button ButtonA = view.findViewById(R.id.ButtonA);
+        Button ButtonB =   view.findViewById(R.id.ButtonB);
+        Button ButtonC =  view.findViewById(R.id.ButtonC);
+        Button ButtonD = view.findViewById(R.id.ButtonD);
+        List<Button> ButtonList = new ArrayList<>();
+        ButtonList.add(ButtonA);
+        ButtonList.add(ButtonB);
+        ButtonList.add(ButtonC);
+        ButtonList.add(ButtonD);
+    }*/

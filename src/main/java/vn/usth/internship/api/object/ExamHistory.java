@@ -3,36 +3,64 @@ package vn.usth.internship.api.object;
 import java.util.List;
 
 public class ExamHistory {
-    private List<QuestionUser> QuestionUser;
-    private String ExamId;
-    private String ExamName;
-
-    public List<vn.usth.internship.api.object.QuestionUser> getQuestionUser() {
-        return QuestionUser;
+    private Exam exam;
+    private String score;
+    List<Question> questionRight,questionWrong,questionNotChosen;
+    List<List<String>> IncorrectChosen;
+    public ExamHistory(Exam exam,String score,List<Question> questionRight,List<Question> questionWrong,List<List<String>> IncorrectChosen,List<Question> questionNotChosen){
+        this.exam = exam;
+        this.score = score;
+        this.questionRight = questionRight;
+        this.questionWrong = questionWrong;
+        this.IncorrectChosen = IncorrectChosen;
+        this.questionNotChosen = questionNotChosen;
     }
 
-    public String getExamId() {
-        return ExamId;
+    public List<Question> getQuestionNotChosen() {
+        return questionNotChosen;
     }
 
-    public String getExamName() {
-        return ExamName;
+    public Exam getExam() {
+        return exam;
     }
 
-    public void setExamId(String examId) {
-        ExamId = examId;
+    public List<List<String>> getIncorrectChosen() {
+        return IncorrectChosen;
     }
 
-    public void setExamName(String examName) {
-        ExamName = examName;
+    public List<Question> getQuestionRight() {
+        return questionRight;
     }
 
-    public void setQuestionUser(List<vn.usth.internship.api.object.QuestionUser> questionUser) {
-        QuestionUser = questionUser;
+    public List<Question> getQuestionWrong() {
+        return questionWrong;
     }
-    public ExamHistory(List<QuestionUser> QuestionUser,String ExamId,String ExamName){
-        this.QuestionUser = QuestionUser;
-        this.ExamId = ExamId;
-        this.ExamName = ExamName;
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setExam(Exam exam) {
+        this.exam = exam;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
+    }
+
+    public void setIncorrectChosen(List<List<String>> incorrectChosen) {
+        IncorrectChosen = incorrectChosen;
+    }
+
+    public void setQuestionRight(List<Question> questionRight) {
+        this.questionRight = questionRight;
+    }
+
+    public void setQuestionWrong(List<Question> questionWrong) {
+        this.questionWrong = questionWrong;
+    }
+
+    public void setQuestionNotChosen(List<Question> questionNotChosen) {
+        this.questionNotChosen = questionNotChosen;
     }
 }

@@ -1,7 +1,6 @@
 package vn.usth.internship.api.object;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,16 +12,18 @@ import java.util.List;
 public class ExamController {
     @Autowired
     private ExamRepository examRepository;
-
+    @Autowired
+    private ExamContentRepository examContentRepository;
+    @Autowired
+    private ExamInfoRepository examInfoRepository;
     @GetMapping(value="/")
-    public List<ExamMini> getAllExam(){
-
+    public List<ExamInfo> getAllExam(){
         List<Exam> examList = examRepository.findAll();
-        List<ExamMini> examMiniList = new ArrayList<>();
-        for(Exam exam: examList){
-            examMiniList.add(new ExamMini(exam.getId(),exam.getName(),exam.getDescription()));
+        List<ExamInfo> examInfoList = new ArrayList<>();
+        for(Exam exam : examList){
+            examInfoList.add(exam.getInfo());
         }
-        return examMiniList;
+        return examInfoList;
     }
 
     @PreAuthorize("hasRole")
@@ -30,8 +31,22 @@ public class ExamController {
     public Exam getExambyID(@PathVariable String id){
         return examRepository.findById(id).get();
     }
-
-
+    @PostMapping("/add")
+    @PreAuthorize("hasRole('CONTRIBUTOR') or hasRole('ADMIN')")
+    public String addExam(@RequestBody Exam exam){
+        examRepository.save(exam);
+        return "New exam added";
+    }
+    @PostMapping("/remove")
+    @PreAuthorize("hasRole('CONTRIBUTOR') or hasRole('ADMIN')")
+    public String removeExam(@RequestBody Exam exam)
+    {
+        Exam examF = examRepository.findById(exam.getId()).get();
+        System.out.println(examF.getName());
+        System.out.println(exam.getId());
+        examRepository.delete(exam);
+        return "Exam deleted";
+    }
     @GetMapping(value = "/name/{name}")
         public List<Exam> getExambyName(@PathVariable String name){
         return examRepository.findByNameContaining(name);
@@ -46,8 +61,9 @@ public class ExamController {
         return List;
     }
     @GetMapping(value="/{id}")
-    public Exam findExambyId(@PathVariable String id){
-        return examRepository.findById(id).get();
+    public ExamContent findExambyId(@PathVariable String id){
+        Exam exam = examRepository.findById(id).get();
+        return exam.getContent();
     }
 
 }
